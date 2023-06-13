@@ -1,5 +1,5 @@
 # Created and powered with Laravel
-Quotation software developed with laravel
+Quotation software developed with Laravel and Angular
 ## Setup
 To run the project locally, first start the BD manager, for this project development MySQL was used with XAMPP. Once you had the DB manger running, open the project and run the migrations
 `php artisan migrate`
@@ -51,6 +51,11 @@ To get a existing quotation by ID.
     "quotation_id": 1
 }
 ```
+
+## Front End
+Once clone the repo, enter `airo_test_front` folder and run
+`npm install`
+`ng serve --open`
 
 ## License
 
