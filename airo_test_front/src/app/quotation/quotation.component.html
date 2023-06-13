@@ -1,0 +1,53 @@
+<div class="quotations-container">
+    <form (ngSubmit)="getQuotation()" class="quotation-data" #quotationForm="ngForm" *ngIf="!quotation">
+        <h2>Quotation</h2>
+        <div layout layout-sm="column">
+            <p class="alert-error" *ngIf="errorMessage">{{ errorMessage }}</p>
+
+            <mat-form-field appearance="outline" class="input-container">
+                <mat-label>Ages</mat-label>
+                <input name="ages" matInput placeholder="19,25,30" [(ngModel)]="ages" />
+                <mat-hint>Separate with comma (,) without spaces</mat-hint>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="input-container">
+                <mat-label>Currency</mat-label>
+                <select name="currency_id" matNativeControl [(ngModel)]="currency_id" required>
+                    <option value="EUR">EUR</option>
+                    <option value="USD">USD</option>
+                    <option value="GBP">GBP</option>
+                </select>
+            </mat-form-field>
+        </div>
+
+        <div>
+            <mat-form-field appearance="outline" class="input-container">
+                <input name="start_date" matInput [matDatepicker]="start_date_input" placeholder="Select a date"
+                    [(ngModel)]="start_date" required>
+                <mat-datepicker-toggle matSuffix [for]="start_date_input"></mat-datepicker-toggle>
+                <mat-datepicker #start_date_input></mat-datepicker>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="input-container">
+                <input name="end_date" matInput [matDatepicker]="end_date_input" placeholder="Select a date"
+                    [(ngModel)]="end_date" required>
+                <mat-datepicker-toggle matSuffix [for]="end_date_input"></mat-datepicker-toggle>
+                <mat-datepicker #end_date_input></mat-datepicker>
+            </mat-form-field>
+        </div>
+
+        <div class="button-container">
+            <button mat-raised-button color="primary">Get Quotation</button>
+        </div>
+    </form>
+
+    <div class="quotation-data" *ngIf="quotation">
+        <h2>This is your quotation:</h2>
+        <p>Total: {{quotation.total}}</p>
+        <p>Currency: {{quotation.currency_id}}</p>
+        <p>Identifier: {{quotation.quotation_id}}</p>
+        <div class="button-container">
+            <button (click)="resetQuoation()">Get new quotation</button>
+        </div>
+    </div>
+</div>
