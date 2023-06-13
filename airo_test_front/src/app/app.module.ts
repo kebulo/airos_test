@@ -11,13 +11,16 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 
 import { FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 
 import { JwtModule } from '@auth0/angular-jwt';
 import { QuotationComponent } from './quotation/quotation.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { DatePipe } from '@angular/common';
+import { RouterModule } from '@angular/router';
+import { AuthGuard } from './auth/auth.guard';
+import { AuthInterceptor } from './interceptors/AuthInterceptor';
 
 export function tokenGetter() {
 	return localStorage.getItem('access_token');
@@ -44,9 +47,18 @@ export function tokenGetter() {
 		BrowserAnimationsModule,
 		MatDatepickerModule,
 		MatInputModule,
-		MatNativeDateModule
+		MatNativeDateModule,
+		RouterModule
 	],
-	providers: [DatePipe],
+	providers: [
+		AuthGuard,
+		DatePipe,
+		{
+			provide: HTTP_INTERCEPTORS,
+			useClass: AuthInterceptor,
+			multi: true
+		}
+	],
 	bootstrap: [AppComponent]
 })
 

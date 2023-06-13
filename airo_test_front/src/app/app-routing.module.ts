@@ -7,14 +7,14 @@ import { RegisterComponent } from './register/register.component';
 
 
 const routes: Routes = [
-	{ path: '', redirectTo: '/login', pathMatch: 'full' },
 	{ path: 'login', component: LoginComponent },
 	{ path: 'register', component: RegisterComponent },
 	{ path: 'quotation', component: QuotationComponent, canActivate: [AuthGuard] },
+	{ path: '**', redirectTo: '/login', pathMatch: 'full' },
 ];
 
 @NgModule({
-	imports: [RouterModule.forRoot(routes)],
+	imports: [RouterModule.forRoot(routes, { useHash: false })],
 	exports: [RouterModule]
 })
 export class AppRoutingModule { }

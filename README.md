@@ -57,6 +57,15 @@ Once clone the repo, enter `airo_test_front` folder and run
 `npm install`
 `ng serve --open`
 
+If you want to check the production implementation, you can do it the next way:
+`ng build --configuration production --aot`
+Once the build is done, copy the `dist/project-name` folder `.js` and `.css` files and put them inside `public/angular-app` folder, then just run the laravel project with a server
+
+
+## Working application
+http://airotest.laprovinciacafe.com/login
+http://airotest.laprovinciacafe.com/api/login
+
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).

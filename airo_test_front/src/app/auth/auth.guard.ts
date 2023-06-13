@@ -11,14 +11,11 @@ export class AuthGuard {
 	canActivate(
 		next: ActivatedRouteSnapshot,
 		state: RouterStateSnapshot): boolean | UrlTree {
-		return this.checkAuthentication();
-	}
-
-	private checkAuthentication(): boolean | UrlTree {
 		if (this.authService.isAuthenticated()) {
 			return true;
 		} else {
-			return this.router.createUrlTree(['/login']);
+			this.router.navigate(['/login']);
+			return false;
 		}
 	}
 

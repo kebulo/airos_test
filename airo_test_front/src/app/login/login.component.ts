@@ -19,7 +19,7 @@ export class LoginComponent {
 		if (this.username && this.password) {
 			this.authService.login(this.username, this.password)
 				.subscribe({
-					next: (v) => console.log(v),
+					next: (v) => {},
 					error: (error: HttpErrorResponse) => {
 						if (error.status === 404) {
 							this.setErrorMessage('The solicitud was not found on the server, please try again');
